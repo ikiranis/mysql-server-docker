@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+
+  mysql-server:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
+#      MYSQL_USER: myweb
+#      MYSQL_PASSWORD: secret
+    restart: always
+    ports:
+      - 3390:3306
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+    # networks:
+    #   mysql_net:
+     
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: app_phpmyadmin
+    restart: always
+    ports:
+      - 8888:80
+    environment:
+      PMA_HOST: mysql-server
+      PHP_UPLOAD_MAX_FILESIZE: 67108864
+    # networks:
+    #   mysql_net:
+    
+# networks:
+#   mysql_net:
