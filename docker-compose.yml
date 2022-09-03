@@ -25,7 +25,7 @@ services:
       - ${PHPMYADMIN_PORT}
     environment:
       PMA_HOST: mysql-server
-      PHP_UPLOAD_MAX_FILESIZE: 67108864
+      UPLOAD_LIMIT: 67108864
     # networks:
     #   mysql_net:
     
